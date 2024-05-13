@@ -4,7 +4,16 @@ use MVC\Controller;
 
 class ControllersHome extends Controller {
 	public function index() {
-		include_once './Application/Views/home.php';
+		$model = $this->model('product');
+		$products = $model->getAll();
+		include_once './Application/Views/index.php';
+	}
+
+	public function search() {
+		if (isset($_GET['search'])) {
+			$searchText = $_GET['search'];
+			echo $searchText;
+		}
 	}
 
 	public function upload() {

@@ -12,14 +12,14 @@ $router->get('/update-category/:id', 'category@show');
 $router->get('/list-category', 'category@index');
 $router->post('/add-category', 'category@insert');
 $router->post('/update-category/:id', 'category@update');
-$router->delete('/destroy/:id', 'category@delete');
+$router->delete('/destroy-category/:id', 'category@delete');
 
 $router->get('/add-product', 'product@create');
 $router->get('/update-product/:id', 'product@show');
 $router->get('/list-product', 'product@index');
 $router->post('/add-product', 'product@insert');
 $router->post('/update-product/:id', 'product@update');
-$router->delete('/destroy/:id', 'product@delete');
+$router->delete('/destroy-product/:id', 'product@delete');
 
 // $router->get('/add', 'product@create');
 // $router->post('/add', 'product@store');
@@ -32,5 +32,10 @@ $router->post('/api/v1/product/update/:id', 'product@update');
 $router->delete('/api/v1/product/delete/:id', 'product@delete');
 
 $router->post('/uploadImage', 'home@upload');
+$router->get('/search', 'home@search');
 
 $router->get('/', 'home@index');
+
+$router->get('/user', function() {
+	echo 'user';
+});

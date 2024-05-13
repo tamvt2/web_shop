@@ -1,453 +1,1080 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
 
 <head>
-	<?php session_start(); ?>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Coron - Fashion eCommerce Bootstrap4 Template</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="public/assets/img/logo.jpg">
 
-    <title>SB Admin 2 - Dashboard</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="public/assets/css/sb-admin-2.min.css" rel="stylesheet">
-
+	<!-- all css here -->
+	<link href="public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="public/assets/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="public/assets/css/plugin.css"> -->
+	<link rel="stylesheet" href="public/assets/css/bundle.css">
+	<link rel="stylesheet" href="public/assets/css/style.css">
+	<!-- <link rel="stylesheet" href="public/assets/css/responsive.css"> -->
+	<script src="public/assets/js/modernizr-2.8.3.min.js"></script>
 </head>
+<body>
+	<!-- Add your site or application content here -->
 
-<body id="page-top">
+	<!--pos page start-->
+	<div class="pos_page">
+		<div class="container">
+			<!--pos page inner-->
+			<div class="pos_page_inner">
+				<!--header area -->
+				<div class="header_area">
+						<!--header top-->
+						<div class="header_top">
+							<div class="row align-items-center">
+								<div class="col text-right">
+									<div class="header_links">
+										<ul>
+											<li><a href="/register" title="Register">Register</a></li>
+											<li><a href="/login" title="Login">Login</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--header top end-->
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+						<!--header middel-->
+						<div class="header_middel">
+							<div class="row align-items-center">
+								<!--logo start-->
+								<div class="col-lg-3 col-md-3">
+									<div class="logo">
+										<a href="/"><img src="public/assets/img/logo.jpg" alt=""></a>
+									</div>
+								</div>
+								<!--logo end-->
+								<div class="col-lg-9 col-md-9">
+									<div class="header_right_info">
+										<div class="search_bar">
+											<form action="#">
+												<input placeholder="Search..." type="text">
+												<button type="submit"><i class="fas fa-fw fa-search"></i></button>
+											</form>
+										</div>
+										<div class="cart">
+											<li class="nav-item">
+												<a class="nav-link" href="#"><i class="fas fa-fw fa-shopping-cart"></i> Giỏ hàng</i></a>
+											</li>
+										</div>
 
-        <!-- Sidebar -->
-        <?php
-			include './Application/Views/layout/sidebar.php';
-		?>
-        <!-- End of Sidebar -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--header middel end-->
+					<div class="header_bottom">
+						<div class="row">
+								<div class="col-12">
+									<div class="main_menu_inner">
+										<div class="main_menu d-none d-lg-block">
+											<nav>
+												<ul>
+													<li class="active"><a href="index.html">Home</a>
+														<div class="mega_menu jewelry">
+															<div class="mega_items jewelry">
+																<ul>
+																	<li><a href="index.html">Home 1</a></li>
+																	<li><a href="index-2.html">Home 2</a></li>
+																</ul>
+															</div>
+														</div>
+													</li>
+													<li><a href="shop.html">shop</a>
+														<div class="mega_menu jewelry">
+															<div class="mega_items jewelry">
+																<ul>
+																	<li><a href="shop-list.html">shop list</a></li>
+																	<li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
+																	<li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
+																	<li><a href="shop-sidebar.html">shop Right Sidebar</a></li>
+																	<li><a href="shop-sidebar-list.html">shop list Right Sidebar</a></li>
+																	<li><a href="single-product.html">Product Details</a></li>
+																	<li><a href="single-product-sidebar.html">Product sidebar</a></li>
+																	<li><a href="single-product-video.html">Product Details video</a></li>
+																	<li><a href="single-product-gallery.html">Product Details Gallery</a></li>
+																</ul>
+															</div>
+														</div>
+													</li>
+													<li><a href="#">women</a>
+														<div class="mega_menu">
+															<div class="mega_top fix">
+																<div class="mega_items">
+																	<h3><a href="#">Accessories</a></h3>
+																	<ul>
+																		<li><a href="#">Cocktai</a></li>
+																		<li><a href="#">day</a></li>
+																		<li><a href="#">Evening</a></li>
+																		<li><a href="#">Sundresses</a></li>
+																		<li><a href="#">Belts</a></li>
+																		<li><a href="#">Sweets</a></li>
+																	</ul>
+																</div>
+																<div class="mega_items">
+																	<h3><a href="#">HandBags</a></h3>
+																	<ul>
+																		<li><a href="#">Accessories</a></li>
+																		<li><a href="#">Hats and Gloves</a></li>
+																		<li><a href="#">Lifestyle</a></li>
+																		<li><a href="#">Bras</a></li>
+																		<li><a href="#">Scarves</a></li>
+																		<li><a href="#">Small Leathers</a></li>
+																	</ul>
+																</div>
+																<div class="mega_items">
+																	<h3><a href="#">Tops</a></h3>
+																	<ul>
+																		<li><a href="#">Evening</a></li>
+																		<li><a href="#">Long Sleeved</a></li>
+																		<li><a href="#">Shrot Sleeved</a></li>
+																		<li><a href="#">Tanks and Camis</a></li>
+																		<li><a href="#">Sleeveless</a></li>
+																		<li><a href="#">Sleeveless</a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="mega_bottom fix">
+																<div class="mega_thumb">
+																	<a href="#"><img src="assets/img/banner/banner1.jpg" alt=""></a>
+																</div>
+																<div class="mega_thumb">
+																	<a href="#"><img src="assets/img/banner/banner2.jpg" alt=""></a>
+																</div>
+															</div>
+														</div>
+													</li>
+													<li><a href="#">men</a>
+														<div class="mega_menu">
+															<div class="mega_top fix">
+																<div class="mega_items">
+																	<h3><a href="#">Rings</a></h3>
+																	<ul>
+																		<li><a href="#">Platinum Rings</a></li>
+																		<li><a href="#">Gold Ring</a></li>
+																		<li><a href="#">Silver Ring</a></li>
+																		<li><a href="#">Tungsten Ring</a></li>
+																		<li><a href="#">Sweets</a></li>
+																	</ul>
+																</div>
+																<div class="mega_items">
+																	<h3><a href="#">Bands</a></h3>
+																	<ul>
+																		<li><a href="#">Platinum Bands</a></li>
+																		<li><a href="#">Gold Bands</a></li>
+																		<li><a href="#">Silver Bands</a></li>
+																		<li><a href="#">Silver Bands</a></li>
+																		<li><a href="#">Sweets</a></li>
+																	</ul>
+																</div>
+																<div class="mega_items">
+																	<a href="#"><img src="assets/img/banner/banner3.jpg" alt=""></a>
+																</div>
+															</div>
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+														</div>
+													</li>
+													<li><a href="#">pages</a>
+														<div class="mega_menu">
+															<div class="mega_top fix">
+																<div class="mega_items">
+																	<h3><a href="#">Column1</a></h3>
+																	<ul>
+																		<li><a href="portfolio.html">Portfolio</a></li>
+																		<li><a href="portfolio-details.html">single portfolio </a></li>
+																		<li><a href="about.html">About Us </a></li>
+																		<li><a href="about-2.html">About Us 2</a></li>
+																		<li><a href="services.html">Service </a></li>
+																		<li><a href="my-account.html">my account </a></li>
+																	</ul>
+																</div>
+																<div class="mega_items">
+																	<h3><a href="#">Column2</a></h3>
+																	<ul>
+																		<li><a href="blog.html">Blog </a></li>
+																		<li><a href="blog-details.html">Blog  Details </a></li>
+																		<li><a href="blog-fullwidth.html">Blog FullWidth</a></li>
+																		<li><a href="blog-sidebar.html">Blog  Sidebar</a></li>
+																		<li><a href="faq.html">Frequently Questions</a></li>
+																		<li><a href="404.html">404</a></li>
+																	</ul>
+																</div>
+																<div class="mega_items">
+																	<h3><a href="#">Column3</a></h3>
+																	<ul>
+																		<li><a href="contact.html">Contact</a></li>
+																		<li><a href="cart.html">cart</a></li>
+																		<li><a href="checkout.html">Checkout  </a></li>
+																		<li><a href="wishlist.html">Wishlist</a></li>
+																		<li><a href="login.html">Login</a></li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</li>
 
-            <!-- Main Content -->
-            <div id="content">
+													<li><a href="blog.html">blog</a>
+														<div class="mega_menu jewelry">
+															<div class="mega_items jewelry">
+																<ul>
+																	<li><a href="blog-details.html">blog details</a></li>
+																	<li><a href="blog-fullwidth.html">blog fullwidth</a></li>
+																	<li><a href="blog-sidebar.html">blog sidebar</a></li>
+																</ul>
+															</div>
+														</div>
+													</li>
+													<li><a href="contact.html">contact us</a></li>
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+												</ul>
+											</nav>
+										</div>
+										<div class="mobile-menu d-lg-none">
+											<nav>
+												<ul>
+													<li><a href="index.html">Home</a>
+														<div>
+															<div>
+																<ul>
+																	<li><a href="index.html">Home 1</a></li>
+																	<li><a href="index-2.html">Home 2</a></li>
+																</ul>
+															</div>
+														</div>
+													</li>
+													<li><a href="shop.html">shop</a>
+														<div>
+															<div>
+																<ul>
+																	<li><a href="shop-list.html">shop list</a></li>
+																	<li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
+																	<li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
+																	<li><a href="shop-sidebar.html">shop Right Sidebar</a></li>
+																	<li><a href="shop-sidebar-list.html">shop list Right Sidebar</a></li>
+																	<li><a href="single-product.html">Product Details</a></li>
+																	<li><a href="single-product-sidebar.html">Product sidebar</a></li>
+																	<li><a href="single-product-video.html">Product Details video</a></li>
+																	<li><a href="single-product-gallery.html">Product Details Gallery</a></li>
+																</ul>
+															</div>
+														</div>
+													</li>
+													<li><a href="#">women</a>
+														<div>
+															<div>
+																<div>
+																	<h3><a href="#">Accessories</a></h3>
+																	<ul>
+																		<li><a href="#">Cocktai</a></li>
+																		<li><a href="#">day</a></li>
+																		<li><a href="#">Evening</a></li>
+																		<li><a href="#">Sundresses</a></li>
+																		<li><a href="#">Belts</a></li>
+																		<li><a href="#">Sweets</a></li>
+																	</ul>
+																</div>
+																<div>
+																	<h3><a href="#">HandBags</a></h3>
+																	<ul>
+																		<li><a href="#">Accessories</a></li>
+																		<li><a href="#">Hats and Gloves</a></li>
+																		<li><a href="#">Lifestyle</a></li>
+																		<li><a href="#">Bras</a></li>
+																		<li><a href="#">Scarves</a></li>
+																		<li><a href="#">Small Leathers</a></li>
+																	</ul>
+																</div>
+																<div>
+																	<h3><a href="#">Tops</a></h3>
+																	<ul>
+																		<li><a href="#">Evening</a></li>
+																		<li><a href="#">Long Sleeved</a></li>
+																		<li><a href="#">Shrot Sleeved</a></li>
+																		<li><a href="#">Tanks and Camis</a></li>
+																		<li><a href="#">Sleeveless</a></li>
+																		<li><a href="#">Sleeveless</a></li>
+																	</ul>
+																</div>
+															</div>
+															<div>
+																<div>
+																	<a href="#"><img src="assets/img/banner/banner1.jpg" alt=""></a>
+																</div>
+																<div>
+																	<a href="#"><img src="assets/img/banner/banner2.jpg" alt=""></a>
+																</div>
+															</div>
+														</div>
+													</li>
+													<li><a href="#">men</a>
+														<div>
+															<div>
+																<div>
+																	<h3><a href="#">Rings</a></h3>
+																	<ul>
+																		<li><a href="#">Platinum Rings</a></li>
+																		<li><a href="#">Gold Ring</a></li>
+																		<li><a href="#">Silver Ring</a></li>
+																		<li><a href="#">Tungsten Ring</a></li>
+																		<li><a href="#">Sweets</a></li>
+																	</ul>
+																</div>
+																<div>
+																	<h3><a href="#">Bands</a></h3>
+																	<ul>
+																		<li><a href="#">Platinum Bands</a></li>
+																		<li><a href="#">Gold Bands</a></li>
+																		<li><a href="#">Silver Bands</a></li>
+																		<li><a href="#">Silver Bands</a></li>
+																		<li><a href="#">Sweets</a></li>
+																	</ul>
+																</div>
+																<div>
+																	<a href="#"><img src="assets/img/banner/banner3.jpg" alt=""></a>
+																</div>
+															</div>
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+														</div>
+													</li>
+													<li><a href="#">pages</a>
+														<div>
+															<div>
+																<div>
+																	<h3><a href="#">Column1</a></h3>
+																	<ul>
+																		<li><a href="portfolio.html">Portfolio</a></li>
+																		<li><a href="portfolio-details.html">single portfolio </a></li>
+																		<li><a href="about.html">About Us </a></li>
+																		<li><a href="about-2.html">About Us 2</a></li>
+																		<li><a href="services.html">Service </a></li>
+																		<li><a href="my-account.html">my account </a></li>
+																	</ul>
+																</div>
+																<div>
+																	<h3><a href="#">Column2</a></h3>
+																	<ul>
+																		<li><a href="blog.html">Blog </a></li>
+																		<li><a href="blog-details.html">Blog  Details </a></li>
+																		<li><a href="blog-fullwidth.html">Blog FullWidth</a></li>
+																		<li><a href="blog-sidebar.html">Blog  Sidebar</a></li>
+																		<li><a href="faq.html">Frequently Questions</a></li>
+																		<li><a href="404.html">404</a></li>
+																	</ul>
+																</div>
+																<div>
+																	<h3><a href="#">Column3</a></h3>
+																	<ul>
+																		<li><a href="contact.html">Contact</a></li>
+																		<li><a href="cart.html">cart</a></li>
+																		<li><a href="checkout.html">Checkout  </a></li>
+																		<li><a href="wishlist.html">Wishlist</a></li>
+																		<li><a href="login.html">Login</a></li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</li>
 
-                    <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
+													<li><a href="blog.html">blog</a>
+														<div>
+															<div>
+																<ul>
+																	<li><a href="blog-details.html">blog details</a></li>
+																	<li><a href="blog-fullwidth.html">blog fullwidth</a></li>
+																	<li><a href="blog-sidebar.html">blog sidebar</a></li>
+																</ul>
+															</div>
+														</div>
+													</li>
+													<li><a href="contact.html">contact us</a></li>
 
-                    <!-- Topbar Navbar -->
-					<?php
-						include './Application/Views/layout/topbar.php'
-					?>
+												</ul>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+				<!--header end -->
 
-                </nav>
-                <!-- End of Topbar -->
+				<!--pos home section-->
+				<div class="pos_home_section">
+					<div class="row">
+						<!--banner slider start-->
+						<div class="col-12">
+							<div class="banner_slider slider_two">
+								<div class="slider_active owl-carousel">
+									<div class="single_slider" style="background-image: url(assets/img/slider/slider_2.png)">
+										<div class="slider_content">
+											<div class="slider_content_inner">
+												<h1>fashion for you</h1>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Cumque eligendi quia, ratione porro, nemo non.</p>
+												<a href="#">shop now</a>
+											</div>
+										</div>
+									</div>
+									<div class="single_slider" style="background-image: url(assets/img/slider/slide_4.png)">
+											<div class="slider_content">
+											<div class="slider_content_inner">
+												<h1>fashion for you</h1>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Cumque eligendi quia, ratione porro, nemo non.</p>
+												<a href="#">shop now</a>
+											</div>
+										</div>
+									</div>
+									<div class="single_slider" style="background-image: url(assets/img/slider/slider_3.png)">
+											<div class="slider_content">
+											<div class="slider_content_inner">
+												<h1>fashion for you</h1>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Cumque eligendi quia, ratione porro, nemo non.</p>
+												<a href="#">shop now</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--banner slider start-->
+						</div>
+					</div>
+						<!--new product area start-->
+					<div class="new_product_area product_two">
+						<div class="row">
+							<div class="col-12">
+								<div class="block_title">
+								<h3>  New Products</h3>
+							</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="single_p_active owl-carousel">
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product1.jpg" alt=""></a>
+											<div class="img_icone">
+												<img src="assets/img/cart/span-new.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$50.00</span>
+											<h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product2.jpg" alt=""></a>
+											<div class="hot_img">
+												<img src="assets/img/cart/span-hot.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$40.00</span>
+											<h3 class="product_title"><a href="single-product.html">Quisque ornare dui</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product3.jpg" alt=""></a>
+											<div class="img_icone">
+												<img src="assets/img/cart/span-new.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$60.00</span>
+											<h3 class="product_title"><a href="single-product.html">Sed non turpiss</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product4.jpg" alt=""></a>
+											<div class="hot_img">
+												<img src="assets/img/cart/span-hot.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$65.00</span>
+											<h3 class="product_title"><a href="single-product.html">Duis convallis</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product6.jpg" alt=""></a>
+											<div class="img_icone">
+												<img src="assets/img/cart/span-new.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$50.00</span>
+											<h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--new product area start-->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+					<!--banner area start-->
+					<div class="banner_area banner_two">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="single_banner">
+									<a href="#"><img src="assets/img/banner/banner7.jpg" alt=""></a>
+									<div class="banner_title">
+										<p>Up to <span> 40%</span> off</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<div class="single_banner">
+									<a href="#"><img src="assets/img/banner/banner8.jpg" alt=""></a>
+									<div class="banner_title title_2">
+										<p>sale off <span> 30%</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<div class="single_banner">
+									<a href="#"><img src="assets/img/banner/banner11.jpg" alt=""></a>
+									<div class="banner_title title_3">
+										<p>sale off <span> 30%</span></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--banner area end-->
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
+					<!--featured product area start-->
+					<div class="new_product_area product_two">
+						<div class="row">
+							<div class="col-12">
+								<div class="block_title">
+								<h3>   featured Products</h3>
+							</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="single_p_active owl-carousel">
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product7.jpg" alt=""></a>
+											<div class="img_icone">
+												<img src="assets/img/cart/span-new.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$50.00</span>
+											<h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product8.jpg" alt=""></a>
+											<div class="hot_img">
+												<img src="assets/img/cart/span-hot.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$40.00</span>
+											<h3 class="product_title"><a href="single-product.html">Quisque ornare dui</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product9.jpg" alt=""></a>
+											<div class="img_icone">
+												<img src="assets/img/cart/span-new.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$60.00</span>
+											<h3 class="product_title"><a href="single-product.html">Sed non turpiss</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product3.jpg" alt=""></a>
+											<div class="hot_img">
+												<img src="assets/img/cart/span-hot.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$65.00</span>
+											<h3 class="product_title"><a href="single-product.html">Duis convallis</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3">
+									<div class="single_product">
+										<div class="product_thumb">
+											<a href="single-product.html"><img src="assets/img/product/product2.jpg" alt=""></a>
+											<div class="img_icone">
+												<img src="assets/img/cart/span-new.png" alt="">
+											</div>
+											<div class="product_action">
+												<a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+											</div>
+										</div>
+										<div class="product_content">
+											<span class="product_price">$50.00</span>
+											<h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
+										</div>
+										<div class="product_info">
+											<ul>
+												<li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--featured product area start-->
 
-                    <!-- Content Row -->
-                    <div class="row">
+					<!--blog area start-->
+					<div class="blog_area blog_two">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="single_blog">
+									<div class="blog_thumb">
+										<a href="blog-details.html"><img src="assets/img/blog/blog3.jpg" alt=""></a>
+									</div>
+									<div class="blog_content">
+										<div class="blog_post">
+											<ul>
+												<li>
+													<a href="#">Tech</a>
+												</li>
+											</ul>
+										</div>
+										<h3><a href="blog-details.html">When an unknown took a galley of type.</a></h3>
+										<p>Distinctively simplify dynamic resources whereas prospective core competencies. Objectively pursue multidisciplinary human capital for interoperable.</p>
+										<div class="post_footer">
+											<div class="post_meta">
+												<ul>
+													<li>Jun 20, 2018</li>
+													<li>3 Comments</li>
+												</ul>
+											</div>
+											<div class="Read_more">
+												<a href="blog-details.html">Read more  <i class="fa fa-angle-double-right"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<div class="single_blog">
+									<div class="blog_thumb">
+										<a href="blog-details.html"><img src="assets/img/blog/blog4.jpg" alt=""></a>
+									</div>
+									<div class="blog_content">
+										<div class="blog_post">
+											<ul>
+												<li>
+													<a href="#">Men</a>
+												</li>
+											</ul>
+										</div>
+										<h3><a href="blog-details.html">When an unknown took a galley of type.</a></h3>
+										<p>Distinctively simplify dynamic resources whereas prospective core competencies. Objectively pursue multidisciplinary human capital for interoperable.</p>
+										<div class="post_footer">
+											<div class="post_meta">
+												<ul>
+													<li>Jun 20, 2018</li>
+													<li>3 Comments</li>
+												</ul>
+											</div>
+											<div class="Read_more">
+												<a href="blog-details.html">Read more  <i class="fa fa-angle-double-right"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6">
+								<div class="single_blog">
+									<div class="blog_thumb">
+										<a href="blog-details.html"><img src="assets/img/blog/blog1.jpg" alt=""></a>
+									</div>
+									<div class="blog_content">
+										<div class="blog_post">
+											<ul>
+												<li>
+													<a href="#">Women</a>
+												</li>
+											</ul>
+										</div>
+										<h3><a href="blog-details.html">When an unknown took a galley of type.</a></h3>
+										<p>Distinctively simplify dynamic resources whereas prospective core competencies. Objectively pursue multidisciplinary human capital for interoperable.</p>
+										<div class="post_footer">
+											<div class="post_meta">
+												<ul>
+													<li>Jun 20, 2018</li>
+													<li>3 Comments</li>
+												</ul>
+											</div>
+											<div class="Read_more">
+												<a href="blog-details.html">Read more  <i class="fa fa-angle-double-right"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						</div>
+					</div>
+					<!--blog area end-->
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+					<!--brand logo strat-->
+					<div class="brand_logo brand_two">
+						<div class="block_title">
+							<h3>Brands</h3>
+						</div>
+						<div class="row">
+							<div class="brand_active owl-carousel">
+								<div class="col-lg-2">
+									<div class="single_brand">
+										<a href="#"><img src="assets/img/brand/brand1.jpg" alt=""></a>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="single_brand">
+										<a href="#"><img src="assets/img/brand/brand2.jpg" alt=""></a>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="single_brand">
+										<a href="#"><img src="assets/img/brand/brand3.jpg" alt=""></a>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="single_brand">
+										<a href="#"><img src="assets/img/brand/brand4.jpg" alt=""></a>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="single_brand">
+										<a href="#"><img src="assets/img/brand/brand5.jpg" alt=""></a>
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<div class="single_brand">
+										<a href="#"><img src="assets/img/brand/brand6.jpg" alt=""></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--brand logo end-->
+				</div>
+				<!--pos home section end-->
+			</div>
+			<!--pos page inner end-->
+		</div>
+	</div>
+	<!--pos page end-->
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+	<!--footer area start-->
+	<div class="footer_area">
+		<div class="footer_top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer_widget">
+							<h3>About us</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							<div class="footer_widget_contect">
+								<p><i class="fa fa-map-marker" aria-hidden="true"></i>  19 Interpro Road Madison, AL 35758, USA</p>
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+								<p><i class="fa fa-mobile" aria-hidden="true"></i> (012) 234 432 3568</p>
+								<a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact@plazathemes.com </a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer_widget">
+							<h3>My Account</h3>
+							<ul>
+								<li><a href="#">Your Account</a></li>
+								<li><a href="#">My orders</a></li>
+								<li><a href="#">My credit slips</a></li>
+								<li><a href="#">My addresses</a></li>
+								<li><a href="#">Login</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer_widget">
+							<h3>Informations</h3>
+							<ul>
+								<li><a href="#">Specials</a></li>
+								<li><a href="#">Our store(s)!</a></li>
+								<li><a href="#">My credit slips</a></li>
+								<li><a href="#">Terms and conditions</a></li>
+								<li><a href="#">About us</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer_widget">
+							<h3>extras</h3>
+							<ul>
+								<li><a href="#"> Brands</a></li>
+								<li><a href="#"> Gift Vouchers </a></li>
+								<li><a href="#"> Affiliates </a></li>
+								<li><a href="#"> Specials </a></li>
+								<li><a href="#"> Privacy policy </a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bottom">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6 col-md-6">
+						<div class="copyright_area">
+							<ul>
+								<li><a href="#"> about us </a></li>
+								<li><a href="#">  Customer Service  </a></li>
+								<li><a href="#">  Privacy Policy  </a></li>
+							</ul>
+							<p>Copyright &copy; 2018 <a href="#">Pos Coron</a>. All rights reserved. </p>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<div class="footer_social text-right">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								<li><a class="pinterest" href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-wifi" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--footer area end-->
 
-                    <!-- Content Row -->
+	<!-- modal area start -->
+	<div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="modal_body">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-5 col-md-5 col-sm-12">
+								<div class="modal_tab">
+									<div class="tab-content" id="pills-tabContent">
+										<div class="tab-pane fade show active" id="tab1" role="tabpanel">
+											<div class="modal_tab_img">
+												<a href="#"><img src="assets/img/product/product13.jpg" alt=""></a>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="tab2" role="tabpanel">
+											<div class="modal_tab_img">
+												<a href="#"><img src="assets/img/product/product14.jpg" alt=""></a>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="tab3" role="tabpanel">
+											<div class="modal_tab_img">
+												<a href="#"><img src="assets/img/product/product15.jpg" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="modal_tab_button">
+										<ul class="nav product_navactive" role="tablist">
+											<li>
+												<a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false"><img src="assets/img/cart/cart17.jpg" alt=""></a>
+											</li>
+											<li>
+													<a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><img src="assets/img/cart/cart18.jpg" alt=""></a>
+											</li>
+											<li>
+												<a class="nav-link button_three" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false"><img src="assets/img/cart/cart19.jpg" alt=""></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-12">
+								<div class="modal_right">
+									<div class="modal_title mb-10">
+										<h2>Handbag feugiat</h2>
+									</div>
+									<div class="modal_price mb-10">
+										<span class="new_price">$64.99</span>
+										<span class="old_price">$78.99</span>
+									</div>
+									<div class="modal_content mb-10">
+										<p>Short-sleeved blouse with feminine draped sleeve detail.</p>
+									</div>
+									<div class="modal_size mb-15">
+										<h2>size</h2>
+										<ul>
+											<li><a href="#">s</a></li>
+											<li><a href="#">m</a></li>
+											<li><a href="#">l</a></li>
+											<li><a href="#">xl</a></li>
+											<li><a href="#">xxl</a></li>
+										</ul>
+									</div>
+									<div class="modal_add_to_cart mb-15">
+										<form action="#">
+											<input min="0" max="100" step="2" value="1" type="number">
+											<button type="submit">add to cart</button>
+										</form>
+									</div>
+									<div class="modal_description mb-15">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+									</div>
+									<div class="modal_social">
+										<h2>Share this product</h2>
+										<ul>
+											<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+											<li><a href="#"><i class="fas fa-fw fa-facebook"></i></a></li>
+											<li><a href="#"><i class="fas fa-fw fa-pinterest"></i></a></li>
+											<li><a href="#"><i class="fas fa-fw fa-google-plus"></i></a></li>
+											<li><a href="#"><i class="fas fa-fw fa-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                    <div class="row">
+		<!-- modal area end -->
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
 
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="public/assets/img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Profile Modal-->
-    <?php
-		include './Application/Views/layout/profile.php';
-	?>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- all js here -->
+	<script src="public/assets/js/jquery-1.12.0.min.js"></script>
+	<script src="public/assets/js/popper.js"></script>
+	<script src="public/assets/js/bootstrap.min.js"></script>
+	<script src="public/assets/js/ajax-mail.js"></script>
+	<script src="public/assets/js/plugins.js"></script>
 	<script src="public/assets/js/main.js"></script>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="public/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="public/assets/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="public/assets/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="public/assets/js/demo/chart-area-demo.js"></script>
-    <script src="public/assets/js/demo/chart-pie-demo.js"></script>
-
 </body>
-
 </html>
