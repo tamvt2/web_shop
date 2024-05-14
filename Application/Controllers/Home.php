@@ -1,19 +1,83 @@
 <?php
 
 use MVC\Controller;
+session_start();
 
 class ControllersHome extends Controller {
 	public function index() {
+		$id = $_SESSION['user_id'];
 		$model = $this->model('product');
 		$products = $model->getAll();
+		$model2 = $this->model('cart');
+		$carts = $model2->getID($id);
 		include_once './Application/Views/index.php';
 	}
 
 	public function search() {
-		if (isset($_GET['search'])) {
-			$searchText = $_GET['search'];
-			echo $searchText;
+		$data = array();
+		if (isset($_GET['name'])) {
+			$name = $_GET['name'];
+			$model = $this->model('product');
+			$value = $model->getName($name);
+			if ($value) {
+				$data = [
+					'data' => $value,
+					'error' => false
+				];
+			} else {
+				$data = [
+					'error' => true
+				];
+			}
+		} else {
+			$data = [
+				'error' => true
+			];
 		}
+		$this->response->setContent($data);
+	}
+
+	public function insert() {
+		$data = array();
+		if (isset($_POST['product_id']) && isset($_POST['user_id'])) {
+			$product_id = $_POST['product_id'];
+			$user_id = $_POST['user_id'];
+			$model = $this->model('cart');
+			$result = $model->insert($product_id, $user_id);
+			if ($result) {
+				$model2 = $this->model('cart');
+				$carts = $model2->getID($user_id);
+				$data = [
+					'count' => $carts->num_rows,
+					'error' => false
+				];
+			} else {
+				$data = [
+					'error' => true
+				];
+			}
+		}
+		$this->response->setContent($data);
+	}
+
+	public function delete($param) {
+		$id = $param['id'];
+		$user_id = $_POST['id'];
+		$model = $this->model('cart');
+		$result = $model->delete($id);
+		if ($result == 1) {
+			$model2 = $this->model('cart');
+			$carts = $model2->getID($user_id);
+			$data = [
+				'count' => $carts->num_rows,
+				'error' => false
+			];
+		} else {
+			$data = [
+				'error' => true
+			];
+		}
+		$this->response->setContent($data);
 	}
 
 	public function upload() {

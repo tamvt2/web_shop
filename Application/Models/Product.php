@@ -11,13 +11,18 @@ class ModelsProduct extends Model {
 	}
 
     public function getAll() {
-        $query = $this->db->query("SELECT products.*, categories.name as category_name FROM products INNER JOIN categories ON products.category_id = categories.category_id");
+        $query = $this->db->query("SELECT products.*, categories.name as category_name FROM products INNER JOIN categories ON products.category_id = categories.category_id LIMIT 9");
 		return $query->rows;
     }
 
 	public function getID($id) {
 		$query = $this->db->query("SELECT * FROM products WHERE product_id = '$id'");
 		return $query->row;
+	}
+
+	public function getName($name) {
+		$query = $this->db->query("SELECT * FROM products WHERE name LiKE '$name%'");
+		return $query->rows;
 	}
 
 	public function update($id, $name, $description, $price, $stock, $category_id, $image) {

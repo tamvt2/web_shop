@@ -33,9 +33,9 @@ $router->delete('/api/v1/product/delete/:id', 'product@delete');
 
 $router->post('/uploadImage', 'home@upload');
 $router->get('/search', 'home@search');
+$router->post('/add-cart', 'home@insert');
+$router->post('/destroy-cart/:id', 'home@delete');
 
 $router->get('/', 'home@index');
 
-$router->get('/user', function() {
-	echo 'user';
-});
+$router->get('/user', 'home@index');

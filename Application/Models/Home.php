@@ -9,7 +9,7 @@ class ModelsHome extends Model {
         $query = $this->db->query("SELECT * FROM users");
 		return $query->rows;
 
-        // return [ 
+        // return [
         //     'name'      => 'Mohammad',
         //     'family'    => 'Rahmani',
         //     'age'       => 21,

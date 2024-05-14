@@ -37,6 +37,51 @@ $(document).ready(function () {
 			},
 		});
 	});
+
+	$('#searchButton').click((e) => {
+		e.preventDefault();
+		const searchText = $('#searchInput').val();
+		const name = searchText.trim().toLowerCase();
+		if (searchText !== '') {
+			$.ajax({
+				type: 'GET',
+				dataType: 'json',
+				data: { name: name },
+				url: '/search',
+				success: function (response) {
+					if (response.error === false) {
+						let html = '';
+						response.data.forEach((element) => {
+							html += `<div class="col-md-6 mb-4">
+								<div class="card">
+									<img src="${element.image}" class="card-img-top" style="height: 120px" alt="Product Image">
+									<div class="card-body">
+										<h5 class="card-title">${element.name}</h5>
+										<p class="card-text text-truncate">${element.description}</p>
+										<p class="card-text">Kho: ${element.stock}</p>
+										<p class="card-text ">Giá: <span class="text-danger">${element.price}đ</span></p>
+										<div class="text-center d-flex">
+											<a href="#" class="btn btn-primary mr-3">Thêm Vào Giỏ</a>
+											<a href="#" class="btn btn-primary">Mua Ngay</a>
+										</div>
+									</div>
+								</div>
+							</div>`;
+						});
+						$('#searchResult').html(html);
+					} else {
+						$('#searchResult').text(
+							`Không tìm thấy kết nào cho '${searchText}'`
+						);
+					}
+				},
+			});
+		} else {
+			$('#searchResult').text(
+				`Không tìm thấy kết nào cho '${searchText}'`
+			);
+		}
+	});
 });
 
 function removeRow(id, url) {
@@ -57,7 +102,7 @@ function removeRow(id, url) {
 	}
 }
 
-$('#upload').change(function () {
+$('#upload').change(() => {
 	const form = new FormData();
 	form.append('file', $(this)[0].files[0]);
 	$.ajax({
@@ -87,3 +132,70 @@ $('#upload').change(function () {
 		},
 	});
 });
+
+function addCart(productId, userId) {
+	const data = { product_id: productId, user_id: userId };
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		data: data,
+		url: '/add-cart',
+		success: function (results) {
+			if (results.error === false) {
+				$('#cartCount').html(results.count);
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error('Lỗi khi gửi form:', error);
+			console.error('Phản hồi từ server:', xhr.responseText);
+		},
+	});
+}
+
+function minus(element) {
+	const quantityElement = $(element).siblings('.quantity');
+	let quantity = parseInt(quantityElement.text());
+
+	if (quantity > 1) {
+		quantity -= 1;
+		quantityElement.text(quantity);
+		updateTotalPrice(element, quantity);
+	}
+}
+
+function plus(element) {
+	const quantityElement = $(element).siblings('.quantity');
+	let quantity = parseInt(quantityElement.text());
+
+	quantity += 1;
+	quantityElement.text(quantity);
+	updateTotalPrice(element, quantity);
+}
+
+function updateTotalPrice(element, quantity) {
+	const priceElement = $(element).closest('tr').find('.text-danger').first();
+	const totalPriceElement = $(element).closest('tr').find('.total-price');
+	const price = parseInt(priceElement.text().replace(/\D/g, '')); // Extract the number
+
+	const totalPrice = price * quantity;
+	totalPriceElement.text(formatCurrency(totalPrice));
+}
+
+function formatCurrency(amount) {
+	return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' đ';
+}
+
+function removeItem(element, url, id) {
+	$(element).closest('tr').remove();
+	$.ajax({
+		type: 'POST',
+		dateType: 'json',
+		data: { id: id },
+		url: url,
+		success: function (results) {
+			if (results.error === false) {
+				$('#cartCount').html(results.count);
+			}
+		},
+	});
+}
