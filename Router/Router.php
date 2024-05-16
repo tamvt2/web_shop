@@ -21,6 +21,10 @@ $router->post('/add-product', 'product@insert');
 $router->post('/update-product/:id', 'product@update');
 $router->delete('/destroy-product/:id', 'product@delete');
 
+$router->get('/list-cart-item', 'cart@index');
+$router->get('/list-order', 'order@index');
+$router->get('/list-order-item', 'orderitem@index');
+
 // $router->get('/add', 'product@create');
 // $router->post('/add', 'product@store');
 // $router->get('/update/:id', 'product@show');
@@ -33,9 +37,13 @@ $router->delete('/api/v1/product/delete/:id', 'product@delete');
 
 $router->post('/uploadImage', 'home@upload');
 $router->get('/search', 'home@search');
-$router->post('/add-cart', 'home@insert');
+$router->post('/add-cart', 'home@addCart');
+$router->post('/buy-cart', 'home@buyCart');
+$router->post('/update-cart/:id', 'home@updateCart');
 $router->post('/destroy-cart/:id', 'home@delete');
 
-$router->get('/', 'home@index');
+$router->get('/', function() {
+	include './Application/Views/home.php';
+});
 
 $router->get('/user', 'home@index');

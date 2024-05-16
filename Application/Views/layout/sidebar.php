@@ -67,8 +67,7 @@
         </a>
         <div id="cart_item" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/register">Add</a>
-                <a class="collapse-item" href="/cards">List</a>
+                <a class="collapse-item" href="/list-cart-item">List</a>
             </div>
         </div>
     </li>
@@ -85,8 +84,7 @@
         </a>
         <div id="order" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/register">Add</a>
-                <a class="collapse-item" href="/cards">List</a>
+                <a class="collapse-item" href="/list-order">List</a>
             </div>
         </div>
     </li>
@@ -103,8 +101,7 @@
         </a>
         <div id="order_item" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/register">Add</a>
-                <a class="collapse-item" href="/cards">List</a>
+                <a class="collapse-item" href="/list-order-item">List</a>
             </div>
         </div>
     </li>

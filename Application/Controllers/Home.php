@@ -5,12 +5,17 @@ session_start();
 
 class ControllersHome extends Controller {
 	public function index() {
-		$id = $_SESSION['user_id'];
-		$model = $this->model('product');
-		$products = $model->getAll();
-		$model2 = $this->model('cart');
-		$carts = $model2->getID($id);
-		include_once './Application/Views/index.php';
+		if (!empty($_SESSION['user_id'])) {
+			$id = $_SESSION['user_id'];
+			$model = $this->model('product');
+			$products = $model->getAll();
+			$model2 = $this->model('cart');
+			$carts = $model2->getID($id);
+			include_once './Application/Views/index.php';
+		} else {
+			header("Location: /login");
+			exit();
+		}
 	}
 
 	public function search() {
@@ -22,6 +27,7 @@ class ControllersHome extends Controller {
 			if ($value) {
 				$data = [
 					'data' => $value,
+					'user_id' => $_SESSION['user_id'],
 					'error' => false
 				];
 			} else {
@@ -37,18 +43,132 @@ class ControllersHome extends Controller {
 		$this->response->setContent($data);
 	}
 
-	public function insert() {
+	public function addCart() {
 		$data = array();
 		if (isset($_POST['product_id']) && isset($_POST['user_id'])) {
 			$product_id = $_POST['product_id'];
 			$user_id = $_POST['user_id'];
 			$model = $this->model('cart');
-			$result = $model->insert($product_id, $user_id);
+			$result = $model->getQuantity($product_id, $user_id);
 			if ($result) {
-				$model2 = $this->model('cart');
-				$carts = $model2->getID($user_id);
+				$data = $this->update($product_id, $user_id, $result['quantity']);
+			} else {
+				$data = $this->insert($product_id, $user_id);
+			}
+		}
+		$this->response->setContent($data);
+	}
+
+	public function buyCart() {
+		$data = array();
+		if (isset($_POST['product_id']) && isset($_POST['user_id'])) {
+			$product_id = $_POST['product_id'];
+			$user_id = $_POST['user_id'];
+			$model = $this->model('cart');
+			$result = $model->getQuantity($product_id, $user_id);
+			if ($result) {
+				$data = $this->update2($product_id, $user_id, $result['quantity']);
+			} else {
+				$data = $this->insert2($product_id, $user_id);
+			}
+		}
+		$this->response->setContent($data);
+	}
+
+	private function insert($product_id, $user_id) {
+		$model = $this->model('cart');
+		$result = $model->insert($product_id, $user_id);
+		if ($result) {
+			$carts = $this->getID($user_id);
+			$data = [
+				'count' => $carts->num_rows,
+				'data' => $carts->rows,
+				'error' => false
+			];
+		} else {
+			$data = [
+				'error' => true
+			];
+		}
+		return $data;
+	}
+
+	private function update($product_id, $user_id, $quantity) {
+		$model = $this->model('cart');
+		$result = $model->update($product_id, $user_id, $quantity+1);
+		if ($result) {
+			$carts = $this->getID($user_id);
+			$data = [
+				'data' => $carts->rows,
+				'user_id' => $_SESSION['user_id'],
+				'error' => false
+			];
+		} else {
+			$data = [
+				'error' => true
+			];
+		}
+		return $data;
+	}
+
+	private function insert2($product_id, $user_id) {
+		$model = $this->model('cart');
+		$result = $model->insert($product_id, $user_id);
+		if ($result) {
+			$value = $this->getID($user_id);
+			$carts = $model->getProductID($product_id);
+			$data = [
+				'data' => $carts,
+				'count' => $value->num_rows,
+				'data2' => $value->rows,
+				'error' => false
+			];
+		} else {
+			$data = [
+				'error' => true
+			];
+		}
+		return $data;
+	}
+
+	private function update2($product_id, $user_id, $quantity) {
+		$model = $this->model('cart');
+		$result = $model->update($product_id, $user_id, $quantity+1);
+		if ($result) {
+			$value = $this->getID($user_id);
+			$carts = $model->getProductID($product_id);
+			$data = [
+				'data' => $carts,
+				'data2' => $value,
+				'user_id' => $_SESSION['user_id'],
+				'error' => false
+			];
+		} else {
+			$data = [
+				'error' => true
+			];
+		}
+		return $data;
+	}
+
+	private function getID($user_id) {
+		$model = $this->model('cart');
+		$carts = $model->getID($user_id);
+		if ($carts) {
+			$data = $carts;
+		}
+		return $data;
+	}
+
+	public function updateCart($param) {
+		if ($this->request->getMethod() == "POST") {
+			$id = $param['id'];
+			$quantity = $_POST['quantity'];
+			$model = $this->model('cart');
+			$result = $model->updateCart($id, $quantity);
+			if ($result) {
 				$data = [
-					'count' => $carts->num_rows,
+					'data' => $result,
 					'error' => false
 				];
 			} else {

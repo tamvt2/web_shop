@@ -71,6 +71,7 @@
 									</thead>
 									<tbody>
 										<?php
+										if (isset($values) && !empty($values)) {
 											foreach($values as $value) {
 												echo '<tr>
 													<td>'.$value['category_id'].'</td>
@@ -81,6 +82,7 @@
 													</td>
 												</tr>';
 											}
+										}
 										?>
 									</tbody>
 								</table>

@@ -37,6 +37,14 @@
 		.mw {
 			max-width: 750px !important;
 		}
+
+		.justify-content-space-evenly {
+			justify-content: space-evenly !important;
+		}
+
+		.position-absolute {
+			position: absolute !important;
+		}
 	</style>
 </head>
 
@@ -50,7 +58,7 @@
 			<!-- Main Content -->
 			<div id="content">
 				<!-- Topbar -->
-				<nav class="navbar navbar-light bg-white topbar mb-4 static-top shadow d-flex justify-content-between pl-5 px-5">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow d-flex justify-content-between pl-5">
 					<div class="logo">
 						<a href="/"><img class="w-50" src="public/assets/img/logo.jpg" alt=""></a>
 					</div>
@@ -70,6 +78,9 @@
 						<div class="cart">
 							<a class="nav-link" href="#" data-toggle="modal" data-target="#cart"><span class="m-cart badge badge-pill badge-danger position-absolute" id="cartCount"><?php echo $carts->num_rows; ?></span><i class="fas fa-fw fa-shopping-cart"></i>  Giỏ hàng</i></a>
 						</div>
+						<?php
+							include_once './Application/Views/layout/topbar.php'
+						?>
 					</div>
 				</nav>
 				<!-- End of Topbar -->
@@ -83,23 +94,25 @@
 							function formatCurrency($amount) {
 								return number_format($amount, 0, ',', '.') . ' đ';
 							}
+							if (isset($products) && !empty($products)) {
 							// Lặp qua mỗi sản phẩm và hiển thị chúng
-							foreach ($products as $product) {
-								echo '<div class="col-md-2 mb-4">
-									<div class="card">
-										<img src="' . $product['image'] . '" class="card-img-top zoom-img" style="height: 120px" alt="Product Image">
-										<div class="card-body">
-											<h5 class="card-title">' . $product['name'] . '</h5>
-											<p class="card-text text-truncate">' . $product['description'] . '</p>
-											<p class="card-text">Kho: ' . $product['stock'] . '</p>
-											<p class="card-text ">Giá: <span class="text-danger">' . formatCurrency($product['price']) . '</span></p>
-											<div class="text-center d-flex">
-												<a class="btn btn-primary mr-3" onclick="addCart('.$product['product_id'].','.$_SESSION['user_id'].')">Thêm Vào Giỏ</a>
-												<a href="#" class="btn btn-primary">Mua Ngay</a>
+								foreach ($products as $product) {
+									echo '<div class="col-md-2 mb-4">
+										<div class="card">
+											<img src="' . $product['image'] . '" class="card-img-top zoom-img" style="height: 120px" alt="Product Image">
+											<div class="card-body">
+												<h5 class="card-title">' . $product['name'] . '</h5>
+												<p class="card-text text-truncate">' . $product['description'] . '</p>
+												<p class="card-text">Kho: ' . $product['stock'] . '</p>
+												<p class="card-text ">Giá: <span class="text-danger">' . formatCurrency($product['price']) . '</span></p>
+												<div class="text-center d-flex">
+													<a class="btn btn-primary mr-3" onclick="addCart('.$product['product_id'].', '.$_SESSION['user_id'].')">Thêm Vào Giỏ</a>
+													<a onclick="buyCart('.$product['product_id'].','.$_SESSION['user_id'].')" class="btn btn-primary" data-toggle="modal" data-target="#buyCart">Mua Ngay</a>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>';
+									</div>';
+								}
 							}
 							?>
 						</div>
@@ -194,8 +207,9 @@
 								<th>Delete</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="cart-item">
 						<?php
+						if (isset($carts->rows) && !empty($carts->rows)) {
 							foreach ($carts->rows as $value) {
 								echo '<tr>
 									<td>'.$value['name'].'</td>
@@ -206,11 +220,11 @@
 										'.formatCurrency($value['price']).'
 									</td>
 									<td class="d-flex align-items-baseline">
-										<a type="button" onclick="minus(this)">
+										<a type="button" onclick="minus(this, \'/update-cart/'.$value['cart_item_id'].'\')">
 											<i class="fas fa-minus-circle"></i>
 										</a>
 										<p class="quantity mx-3">'.$value['quantity'].'</p>
-										<a type="button" onclick="plus(this)">
+										<a type="button" onclick="plus(this, \'/update-cart/'.$value['cart_item_id'].'\', '.$value['stock'].')">
 											<i class="fas fa-plus-circle"></i>
 										</a>
 									</td>
@@ -224,16 +238,55 @@
 									</td>
 								</tr>';
 							}
+						}
 						?>
 						</tbody>
 					</table>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer justify-content-space-evenly">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					<button type="button" id="buy" class="btn btn-secondary bg-info">Thanh Toán</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="buyCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered mw" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Thanh toán</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th style="width: 140px">Image</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Total</th>
+								<th>Delete</th>
+							</tr>
+						</thead>
+						<tbody id="buy-cart">
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer justify-content-space-evenly">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					<button type="button" id="buy" class="btn btn-secondary bg-info">Thanh Toán</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php
+		include_once './Application/Views/layout/profile.php'
+	?>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="public/assets/js/main.js"></script>
 

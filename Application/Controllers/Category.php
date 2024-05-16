@@ -5,13 +5,23 @@ use MVC\Controller;
 session_start();
 class ControllersCategory extends Controller {
 	public function index() {
-		$model = $this->model('category');
-		$values = $model->getAll();
-		include_once './Application/Views/category/list.php';
+		if (!empty($_SESSION['user_id'])) {
+			$model = $this->model('category');
+			$values = $model->getAll();
+			include_once './Application/Views/category/list.php';
+		} else {
+			header("Location: /login");
+			exit();
+		}
 	}
 
 	public function create() {
-		include_once './Application/Views/category/add.php';
+		if (!empty($_SESSION['user_id'])) {
+			include_once './Application/Views/category/add.php';
+		} else {
+			header("Location: /login");
+			exit();
+		}
 	}
 
 	public function insert() {
@@ -39,10 +49,15 @@ class ControllersCategory extends Controller {
 	}
 
 	public function show($param) {
-		$id = $param['id'];
-		$model = $this->model('category');
-		$value = $model->getID($id);
-		include_once './Application/Views/category/edit.php';
+		if (!empty($_SESSION['user_id'])) {
+			$id = $param['id'];
+			$model = $this->model('category');
+			$value = $model->getID($id);
+			include_once './Application/Views/category/edit.php';
+		} else {
+			header("Location: /login");
+			exit();
+		}
 	}
 
 	public function update($param) {

@@ -65,13 +65,10 @@
 									<thead>
 										<tr>
 											<th style="width: 50px">ID</th>
-											<th>Name</th>
-											<th style="width: 250px">Description</th>
-											<th>Price</th>
-											<th>Stock</th>
-											<th>Category name</th>
-											<th>Image</th>
-											<th style="width: 100px">&nbsp</th>
+											<th>Username</th>
+											<th>Total</th>
+											<th>Status</th>
+											<th>Created_at</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -79,17 +76,11 @@
 										if (isset($values) && !empty($values)) {
 											foreach($values as $value) {
 												echo '<tr>
-													<td>'.$value['product_id'].'</td>
-													<td>'.$value['name'].'</td>
-													<td>'.$value['description'].'</td>
-													<td>'.$value['price'].'</td>
-													<td>'.$value['stock'].'</td>
-													<td>'.$value['category_name'].'</td>
-													<td><img src="'.$value['image'].'" 	class="menu-img" alt="" style="width: 40%; height: 60px"></td>
-													<td>
-														<a type="button" class="btn btn-warning btn-sm mb-1" href="/update-product/'.$value['product_id'].'">Sửa</a>
-														<a type="button" class="btn btn-danger btn-sm" onclick="removeRow('.$value['product_id'].', \'/destroy-product/\')">Xóa</a>
-													</td>
+													<td>'.$value['order_id'].'</td>
+													<td>'.$value['username'].'</td>
+													<td>'.$value['total'].'</td>
+													<td>'.$value['status'].'</td>
+													<td>'.$value['created_at'].'</td>
 												</tr>';
 											}
 										}

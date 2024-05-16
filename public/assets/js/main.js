@@ -48,20 +48,28 @@ $(document).ready(function () {
 				dataType: 'json',
 				data: { name: name },
 				url: '/search',
-				success: function (response) {
-					if (response.error === false) {
+				success: function (results) {
+					if (results.error === false) {
 						let html = '';
-						response.data.forEach((element) => {
+						results.data.forEach((element) => {
 							html += `<div class="col-md-6 mb-4">
 								<div class="card">
-									<img src="${element.image}" class="card-img-top" style="height: 120px" alt="Product Image">
+									<img src="${
+										element.image
+									}" class="card-img-top" style="height: 120px" alt="Product Image">
 									<div class="card-body">
 										<h5 class="card-title">${element.name}</h5>
 										<p class="card-text text-truncate">${element.description}</p>
 										<p class="card-text">Kho: ${element.stock}</p>
-										<p class="card-text ">Giá: <span class="text-danger">${element.price}đ</span></p>
+										<p class="card-text ">Giá: <span class="text-danger">
+											${formatCurrency(element.price)}
+										</span></p>
 										<div class="text-center d-flex">
-											<a href="#" class="btn btn-primary mr-3">Thêm Vào Giỏ</a>
+											<a class="btn btn-primary mr-3" onclick="addCart(${element.product_id}, ${
+								results.user_id
+							})">
+												Thêm Vào Giỏ
+											</a>
 											<a href="#" class="btn btn-primary">Mua Ngay</a>
 										</div>
 									</div>
@@ -142,7 +150,44 @@ function addCart(productId, userId) {
 		url: '/add-cart',
 		success: function (results) {
 			if (results.error === false) {
-				$('#cartCount').html(results.count);
+				if (results.count) {
+					$('#cartCount').html(results.count);
+				}
+
+				if (results.data) {
+					let html = '';
+					results.data.forEach((val) => {
+						html += `<tr>
+							<td>${val.name}</td>
+							<td>
+								<img src="${val.image}" class="menu-img w-75" alt="" style="height: 60px">
+							</td>
+							<td class="text-danger">${formatCurrency(val.price)}</td>
+							<td class="d-flex align-items-baseline">
+								<a type="button" onclick="minus(this, \'/update-cart/${val.cart_item_id}\')">
+									<i class="fas fa-minus-circle"></i>
+								</a>
+								<p class="quantity mx-3">${val.quantity}</p>
+								<a type="button" onclick="plus(this, \'/update-cart/${val.cart_item_id}\', ${
+							val.stock
+						})">
+									<i class="fas fa-plus-circle"></i>
+								</a>
+							</td>
+							<td class="text-danger total-price">
+								${formatCurrency(val.price * val.quantity)}
+							</td>
+							<td class="text-center">
+								<a type="button" onclick="removeItem(this, \'/destroy-cart/${
+									val.cart_item_id
+								}\', ${results.suser_id})">
+									<i class="fas fa-trash"></i>
+								</a>
+							</td>
+						</tr>`;
+					});
+					$('.cart-item').html(html);
+				}
 			}
 		},
 		error: function (xhr, status, error) {
@@ -152,7 +197,7 @@ function addCart(productId, userId) {
 	});
 }
 
-function minus(element) {
+function minus(element, url) {
 	const quantityElement = $(element).siblings('.quantity');
 	let quantity = parseInt(quantityElement.text());
 
@@ -160,16 +205,20 @@ function minus(element) {
 		quantity -= 1;
 		quantityElement.text(quantity);
 		updateTotalPrice(element, quantity);
+		updateCart(url, quantity);
 	}
 }
 
-function plus(element) {
+function plus(element, url, stock) {
 	const quantityElement = $(element).siblings('.quantity');
 	let quantity = parseInt(quantityElement.text());
 
-	quantity += 1;
-	quantityElement.text(quantity);
-	updateTotalPrice(element, quantity);
+	if (quantity < stock) {
+		quantity += 1;
+		quantityElement.text(quantity);
+		updateTotalPrice(element, quantity);
+		updateCart(url, quantity);
+	}
 }
 
 function updateTotalPrice(element, quantity) {
@@ -199,3 +248,106 @@ function removeItem(element, url, id) {
 		},
 	});
 }
+
+function updateCart(url, quantity) {
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		data: { quantity: quantity },
+		url: url,
+		success: function (results) {},
+	});
+}
+
+function buyCart(productId, userId) {
+	const data = { product_id: productId, user_id: userId };
+	console.log(data);
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		data: data,
+		url: '/buy-cart',
+		success: function (results) {
+			console.log(results);
+			if (results.error === false) {
+				if (results.data) {
+					let html = '';
+					const val = results.data;
+					html += `<tr>
+						<td>${val.name}</td>
+						<td>
+							<img src="${val.image}" class="menu-img w-75" alt="" style="height: 60px">
+						</td>
+						<td class="text-danger">${formatCurrency(val.price)}</td>
+						<td class="d-flex align-items-baseline">
+							<a type="button" onclick="minus(this, \'/update-cart/${val.cart_item_id}\')">
+								<i class="fas fa-minus-circle"></i>
+							</a>
+							<p class="quantity mx-3">${val.quantity}</p>
+							<a type="button" onclick="plus(this, \'/update-cart/${val.cart_item_id}\', ${
+						val.stock
+					})">
+								<i class="fas fa-plus-circle"></i>
+							</a>
+						</td>
+						<td class="text-danger total-price">
+							${formatCurrency(val.price * val.quantity)}
+						</td>
+						<td class="text-center">
+							<a type="button" onclick="removeItem(this, \'/destroy-cart/${
+								val.cart_item_id
+							}\', ${results.suser_id})">
+								<i class="fas fa-trash"></i>
+							</a>
+						</td>
+					</tr>`;
+					$('#buy-cart').html(html);
+				}
+				if (results.count) {
+					$('#cartCount').html(results.count);
+				}
+
+				if (results.data2) {
+					let html = '';
+					results.data2.forEach((val) => {
+						html += `<tr>
+							<td>${val.name}</td>
+							<td>
+								<img src="${val.image}" class="menu-img w-75" alt="" style="height: 60px">
+							</td>
+							<td class="text-danger">${formatCurrency(val.price)}</td>
+							<td class="d-flex align-items-baseline">
+								<a type="button" onclick="minus(this, \'/update-cart/${val.cart_item_id}\')">
+									<i class="fas fa-minus-circle"></i>
+								</a>
+								<p class="quantity mx-3">${val.quantity}</p>
+								<a type="button" onclick="plus(this, \'/update-cart/${val.cart_item_id}\', ${
+							val.stock
+						})">
+									<i class="fas fa-plus-circle"></i>
+								</a>
+							</td>
+							<td class="text-danger total-price">
+								${formatCurrency(val.price * val.quantity)}
+							</td>
+							<td class="text-center">
+								<a type="button" onclick="removeItem(this, \'/destroy-cart/${
+									val.cart_item_id
+								}\', ${results.suser_id})">
+									<i class="fas fa-trash"></i>
+								</a>
+							</td>
+						</tr>`;
+					});
+					$('.cart-item').html(html);
+				}
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error('Lỗi khi gửi form:', error);
+			console.error('Phản hồi từ server:', xhr.responseText);
+		},
+	});
+}
+
+function html() {}

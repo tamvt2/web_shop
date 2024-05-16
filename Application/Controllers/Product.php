@@ -6,15 +6,25 @@ use MVC\Controller;
 class ControllersProduct extends Controller {
 
 	public function index() {
-		$model = $this->model('product');
-		$values = $model->getAll();
-		include_once ('./Application/Views/product/list.php');
+		if (!empty($_SESSION['user_id'])) {
+			$model = $this->model('product');
+			$values = $model->getAll();
+			include_once ('./Application/Views/product/list.php');
+		} else {
+			header("Location: /login");
+			exit();
+		}
 	}
 
 	public function create() {
-		$model = $this->model('category');
-		$values = $model->getAll();
-		include_once('./Application/Views/product/add.php');
+		if (!empty($_SESSION['user_id'])) {
+			$model = $this->model('category');
+			$values = $model->getAll();
+			include_once('./Application/Views/product/add.php');
+		} else {
+			header("Location: /login");
+			exit();
+		}
 	}
 
 	public function insert() {
@@ -48,12 +58,17 @@ class ControllersProduct extends Controller {
 	}
 
 	public function show($param) {
-		$id = $param['id'];
-		$model2 = $this->model('category');
-		$values = $model2->getAll();
-		$model = $this->model('product');
-		$product = $model->getID($id);
-		include_once './Application/Views/product/edit.php';
+		if (!empty($_SESSION['user_id'])) {
+			$id = $param['id'];
+			$model2 = $this->model('category');
+			$values = $model2->getAll();
+			$model = $this->model('product');
+			$product = $model->getID($id);
+			include_once './Application/Views/product/edit.php';
+		} else {
+			header("Location: /login");
+			exit();
+		}
 	}
 
 	public function update($param) {
