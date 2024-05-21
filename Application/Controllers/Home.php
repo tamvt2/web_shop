@@ -51,7 +51,16 @@ class ControllersHome extends Controller {
 			$model = $this->model('cart');
 			$result = $model->getQuantity($product_id, $user_id);
 			if ($result) {
-				$data = $this->update($product_id, $user_id, $result['quantity']);
+				$model2 = $this->model('product');
+				$result2 = $model2->getID($product_id);
+				if ($result['quantity'] < $result2['stock']) {
+					$data = $this->update($product_id, $user_id, $result['quantity']);
+				} else {
+					$data = [
+						'message' => 'Đã thêm vào giỏ số lượng tối đa. Không thể thêm nữa!',
+						'error' => false
+					];
+				}
 			} else {
 				$data = $this->insert($product_id, $user_id);
 			}
@@ -67,7 +76,17 @@ class ControllersHome extends Controller {
 			$model = $this->model('cart');
 			$result = $model->getQuantity($product_id, $user_id);
 			if ($result) {
-				$data = $this->update2($product_id, $user_id, $result['quantity']);
+				$model2 = $this->model('product');
+				$result2 = $model2->getID($product_id);
+				if ($result['quantity'] < $result2['stock']) {
+					$data = $this->update2($product_id, $user_id, $result['quantity']);
+				} else {
+					$carts = $this->getProductID($product_id, $user_id);
+					$data = [
+						'data' => $carts,
+						'error' => false
+					];
+				}
 			} else {
 				$data = $this->insert2($product_id, $user_id);
 			}
@@ -116,7 +135,7 @@ class ControllersHome extends Controller {
 		$result = $model->insert($product_id, $user_id);
 		if ($result) {
 			$value = $this->getID($user_id);
-			$carts = $model->getProductID($product_id);
+			$carts = $this->getProductID($product_id, $user_id);
 			$data = [
 				'data' => $carts,
 				'count' => $value->num_rows,
@@ -136,10 +155,10 @@ class ControllersHome extends Controller {
 		$result = $model->update($product_id, $user_id, $quantity+1);
 		if ($result) {
 			$value = $this->getID($user_id);
-			$carts = $model->getProductID($product_id);
+			$carts = $this->getProductID($product_id, $user_id);
 			$data = [
 				'data' => $carts,
-				'data2' => $value,
+				'data2' => $value->rows,
 				'user_id' => $_SESSION['user_id'],
 				'error' => false
 			];
@@ -154,6 +173,15 @@ class ControllersHome extends Controller {
 	private function getID($user_id) {
 		$model = $this->model('cart');
 		$carts = $model->getID($user_id);
+		if ($carts) {
+			$data = $carts;
+		}
+		return $data;
+	}
+
+	private function getProductID($product_id, $user_id) {
+		$model = $this->model('cart');
+		$carts = $model->getProductID($product_id, $user_id);
 		if ($carts) {
 			$data = $carts;
 		}

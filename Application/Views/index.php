@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
+	<link rel="shortcut icon" type="image/x-icon" href="public/assets/img/logo.jpg">
+    <title>Pos Coron - Home</title>
 
     <!-- Custom fonts for this template-->
     <link href="public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -106,7 +106,7 @@
 												<p class="card-text">Kho: ' . $product['stock'] . '</p>
 												<p class="card-text ">Giá: <span class="text-danger">' . formatCurrency($product['price']) . '</span></p>
 												<div class="text-center d-flex">
-													<a class="btn btn-primary mr-3" onclick="addCart('.$product['product_id'].', '.$_SESSION['user_id'].')">Thêm Vào Giỏ</a>
+													<a class="btn btn-primary mr-3 add-cart" onclick="addCart('.$product['product_id'].', '.$_SESSION['user_id'].')">Thêm Vào Giỏ</a>
 													<a onclick="buyCart('.$product['product_id'].','.$_SESSION['user_id'].')" class="btn btn-primary" data-toggle="modal" data-target="#buyCart">Mua Ngay</a>
 												</div>
 											</div>
@@ -211,6 +211,7 @@
 						<?php
 						if (isset($carts->rows) && !empty($carts->rows)) {
 							foreach ($carts->rows as $value) {
+								$price = $value['price']*$value['quantity'];
 								echo '<tr>
 									<td>'.$value['name'].'</td>
 									<td>
@@ -223,13 +224,14 @@
 										<a type="button" onclick="minus(this, \'/update-cart/'.$value['cart_item_id'].'\')">
 											<i class="fas fa-minus-circle"></i>
 										</a>
-										<p class="quantity mx-3">'.$value['quantity'].'</p>
+										<p class="quantity mx-3 data" data-id="'.$value['product_id'].'"
+											data-price="'.$value['price'].'">'.$value['quantity'].'</p>
 										<a type="button" onclick="plus(this, \'/update-cart/'.$value['cart_item_id'].'\', '.$value['stock'].')">
 											<i class="fas fa-plus-circle"></i>
 										</a>
 									</td>
-									<td class="text-danger total-price">
-										'.formatCurrency($value['price']*$value['quantity']).'
+									<td class="text-danger price sum-price">
+										'.formatCurrency($price).'
 									</td>
 									<td class="text-center">
 										<a type="button" onclick="removeItem(this, \'/destroy-cart/'.$value['cart_item_id'].'\', '.$_SESSION['user_id'].')">
@@ -242,10 +244,15 @@
 						?>
 						</tbody>
 					</table>
+					<hr>
+					<div class="d-flex justify-content-between px-5">
+						<h5>Total</h5>
+						<span class="text-danger total-cart">0 đ</span>
+					</div>
 				</div>
 				<div class="modal-footer justify-content-space-evenly">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-					<button type="button" id="buy" class="btn btn-secondary bg-info">Thanh Toán</button>
+					<button type="button" onclick="payCarts(<?php echo $_SESSION['user_id'] ?>)" class="btn btn-secondary bg-info">Thanh Toán</button>
 				</div>
 			</div>
 		</div>
@@ -275,10 +282,15 @@
 						<tbody id="buy-cart">
 						</tbody>
 					</table>
+					<hr>
+					<div class="d-flex justify-content-between px-5">
+						<h5>Total</h5>
+						<span class="text-danger total-buy">0 đ</span>
+					</div>
 				</div>
 				<div class="modal-footer justify-content-space-evenly">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-					<button type="button" id="buy" class="btn btn-secondary bg-info">Thanh Toán</button>
+					<button type="button" onclick="payCart(<?php echo $_SESSION['user_id'] ?>)" class="btn btn-secondary bg-info">Thanh Toán</button>
 				</div>
 			</div>
 		</div>

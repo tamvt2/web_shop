@@ -22,14 +22,14 @@ $router->post('/update-product/:id', 'product@update');
 $router->delete('/destroy-product/:id', 'product@delete');
 
 $router->get('/list-cart-item', 'cart@index');
-$router->get('/list-order', 'order@index');
-$router->get('/list-order-item', 'orderitem@index');
 
-// $router->get('/add', 'product@create');
-// $router->post('/add', 'product@store');
-// $router->get('/update/:id', 'product@show');
-// $router->post('/update/:id', 'product@edit');
-// $router->delete('/destroy/:id', 'product@delete');
+$router->get('/update-order/:id', 'order@show');
+$router->get('/list-order', 'order@index');
+$router->post('/add-order', 'order@insert');
+$router->post('/add-orders', 'order@create');
+$router->post('/update-order/:id', 'order@update');
+
+$router->get('/list-order-item', 'orderitem@index');
 
 $router->get('/api/v1/product/list', 'product@list');
 $router->post('/api/v1/product/update/:id', 'product@update');
@@ -46,4 +46,4 @@ $router->get('/', function() {
 	include './Application/Views/home.php';
 });
 
-$router->get('/user', 'home@index');
+$router->get('/home', 'home@index');

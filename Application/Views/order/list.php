@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <link rel="shortcut icon" type="image/x-icon" href="public/assets/img/logo.jpg">
+    <title>Pos Coron - Order List</title>
 
     <!-- Custom fonts for this template-->
     <link href="public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,6 +70,7 @@
 											<th>Total</th>
 											<th>Status</th>
 											<th>Created_at</th>
+											<th style="width: 100px">&nbsp</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -81,6 +83,9 @@
 													<td>'.$value['total'].'</td>
 													<td>'.$value['status'].'</td>
 													<td>'.$value['created_at'].'</td>
+													<td>
+														<a type="button" class="btn btn-warning btn-sm" href="/update-order/'.$value['order_id'].'">Sửa</a>
+													</td>
 												</tr>';
 											}
 										}
@@ -97,7 +102,15 @@
 
             </div>
             <!-- End of Main Content -->
-
+			<!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
 

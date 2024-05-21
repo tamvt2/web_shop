@@ -86,7 +86,7 @@ class ControllersUser extends Controller {
 							header("Location: /");
 							exit();
 						} else {
-							header("Location: /user");
+							header("Location: /home");
 							exit();
 						}
 					} else {

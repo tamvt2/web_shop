@@ -10,9 +10,9 @@ class ModelsCart extends Model {
 		return $this->db->query($sql);
     }
 
-	public function getProductID($id) {
+	public function getProductID($id, $user_id) {
         // can you connect to database
-        $query = $this->db->query("SELECT cart_items.*, products.name, products.image, products.price, products.stock FROM cart_items INNER JOIN products ON cart_items.product_id = products.product_id WHERE cart_items.product_id = $id");
+        $query = $this->db->query("SELECT cart_items.*, products.name, products.image, products.price, products.stock FROM cart_items INNER JOIN products ON cart_items.product_id = products.product_id WHERE cart_items.product_id = $id AND cart_items.user_id = $user_id");
 		return $query->row;
     }
 
@@ -45,6 +45,16 @@ class ModelsCart extends Model {
 
 	public function delete($id) {
 		$query = $this->db->query("DELETE FROM cart_items WHERE cart_item_id = '$id'");
+		return $query->num_rows;
+	}
+
+	public function deleteProductID($id) {
+		$query = $this->db->query("DELETE FROM cart_items WHERE product_id = '$id'");
+		return $query->num_rows;
+	}
+
+	public function deleteUserID($id) {
+		$query = $this->db->query("DELETE FROM cart_items WHERE user_id = '$id'");
 		return $query->num_rows;
 	}
 }

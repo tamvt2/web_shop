@@ -68,40 +68,30 @@
 										echo '<div class="mb-2 ml-3 text-danger">' . $_SESSION['error_message'] . '</div>';
 									}
 								?>
-								<form class="user" method="post" action="/update-product/<?php echo $product['product_id'] ?>">
-								<div class="form-group">
-										<label class="form-label ml-3">Tên danh mục</label>
-										<select name="category_id" class="form-control">
-											<?php
-												foreach ($values as $value) {
-													$selected = ($value['category_id'] == $product['category_id']) ? 'selected' : '';
-													echo '<option value="' . htmlspecialchars($value['category_id']) . '" ' . $selected . '>'.htmlspecialchars($value['name']).'</option>';
-												}
-											?>
+								<form class="user" method="post" action="/update-order/<?php echo $value['order_id'] ?>">
+									<div class="form-group">
+										<label for="name" class="form-label ml-3">Tên người mua</label>
+										<input type="text" class="form-control form-control-user" value="<?php echo $value['username'] ?>" disabled>
+									</div>
+									<div class="form-group">
+										<label for="price" class="form-label ml-3">Tổng tiền</label>
+										<input type="text" class="form-control form-control-user text-danger" value="<?php function formatCurrency($amount) {
+											return number_format($amount, 0, ',', '.') . ' đ';
+										} echo formatCurrency($value['total']) ?>" disabled>
+									</div>
+									<div class="form-group">
+										<label for="description" class="form-label ml-3">Trạng thái đơn hàng</label>
+										<select name="status" class="form-control">
+										<?php
+											foreach ($options as $option) {
+												echo '<option value="' . $option . '"' . ($value['status'] == $option ? 'selected' : '') . '>' . $option . '</option>';
+											}
+										?>
 										</select>
 									</div>
 									<div class="form-group">
-										<label for="name" class="form-label ml-3">Tên sản phẩm</label>
-										<input type="text" class="form-control form-control-user" value="<?php echo $product['name'] ?>" name="name" placeholder="Nhập tên sản phẩm">
-									</div>
-									<div class="form-group">
-										<label for="description" class="form-label ml-3">Mô tả sản phẩm</label>
-										<textarea class="form-control form-control-user"
-											name="description" placeholder="Nhập mô tả sản phẩm"><?php echo $product['description'] ?></textarea>
-									</div>
-									<div class="form-group">
-										<label for="price" class="form-label ml-3">Giá sản phẩm</label>
-										<input type="number" class="form-control form-control-user" value="<?php echo $product['price'] ?>" name="price" placeholder="Nhập giá sản phẩm">
-									</div>
-									<div class="form-group">
-										<label for="stock" class="form-label ml-3">Số lượng hàng tồn kho</label>
-										<input type="number" class="form-control form-control-user" value="<?php echo $product['stock'] ?>" name="stock" placeholder="Nhập số lượng hàng tồn kho">
-									</div>
-									<div class="form-group">
-										<label for="image" class="form-label ml-3">Hình ảnh sản phẩm</label>
-										<input type="file" name="file" class="form-control mb-2" id="upload" value="Upload">
-										<div id="image_show"></div>
-										<input type="hidden" name="image" id="thumb" value="<?php echo $product['image'] ?>">
+										<label for="stock" class="form-label ml-3">Thời gian tạo đơn hàng</label>
+										<input type="text" class="form-control form-control-user" value="<?php echo $value['created_at'] ?>" disabled>
 									</div>
 									<button class="btn btn-primary btn-user btn-block">
 										Lưu

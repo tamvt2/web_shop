@@ -10,7 +10,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Quản Lý Sản Phẩm</title>
+	<link rel="shortcut icon" type="image/x-icon" href="public/assets/img/logo.jpg">
+    <title>Pos Coron - Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

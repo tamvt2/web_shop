@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-	<?php session_start(); ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <link rel="shortcut icon" type="image/x-icon" href="public/assets/img/logo.jpg">
+    <title>Pos Coron - Product Add</title>
 
     <!-- Custom fonts for this template-->
     <link href="public/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -119,7 +119,15 @@
 
             </div>
             <!-- End of Main Content -->
-
+			<!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
 

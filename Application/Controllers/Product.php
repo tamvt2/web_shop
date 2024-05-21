@@ -1,6 +1,7 @@
 <?php
 
 use MVC\Controller;
+session_start();
 
 
 class ControllersProduct extends Controller {

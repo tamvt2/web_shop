@@ -90,6 +90,7 @@ $(document).ready(function () {
 			);
 		}
 	});
+	total();
 });
 
 function removeRow(id, url) {
@@ -110,7 +111,7 @@ function removeRow(id, url) {
 	}
 }
 
-$('#upload').change(() => {
+$('#upload').change(function () {
 	const form = new FormData();
 	form.append('file', $(this)[0].files[0]);
 	$.ajax({
@@ -150,6 +151,10 @@ function addCart(productId, userId) {
 		url: '/add-cart',
 		success: function (results) {
 			if (results.error === false) {
+				if (results.message) {
+					alert(results.message);
+				}
+
 				if (results.count) {
 					$('#cartCount').html(results.count);
 				}
@@ -167,14 +172,18 @@ function addCart(productId, userId) {
 								<a type="button" onclick="minus(this, \'/update-cart/${val.cart_item_id}\')">
 									<i class="fas fa-minus-circle"></i>
 								</a>
-								<p class="quantity mx-3">${val.quantity}</p>
+								<p class="quantity mx-3 data" data-id="${val.product_id}" data-price="${
+							val.price
+						}">
+									${val.quantity}
+								</p>
 								<a type="button" onclick="plus(this, \'/update-cart/${val.cart_item_id}\', ${
 							val.stock
 						})">
 									<i class="fas fa-plus-circle"></i>
 								</a>
 							</td>
-							<td class="text-danger total-price">
+							<td class="text-danger price sum-price">
 								${formatCurrency(val.price * val.quantity)}
 							</td>
 							<td class="text-center">
@@ -189,6 +198,108 @@ function addCart(productId, userId) {
 					$('.cart-item').html(html);
 				}
 			}
+			total();
+		},
+		error: function (xhr, status, error) {
+			console.error('Lỗi khi gửi form:', error);
+			console.error('Phản hồi từ server:', xhr.responseText);
+		},
+	});
+}
+
+function buyCart(productId, userId) {
+	const data = { product_id: productId, user_id: userId };
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		data: data,
+		url: '/buy-cart',
+		success: function (results) {
+			if (results.error === false) {
+				if (results.data) {
+					let html = '';
+					const val = results.data;
+					html += `<tr>
+						<td>${val.name}</td>
+						<td>
+							<img src="${val.image}" class="menu-img w-75" alt="" style="height: 60px">
+						</td>
+						<td class="text-danger">${formatCurrency(val.price)}</td>
+						<td class="d-flex align-items-baseline">
+							<a type="button" onclick="minus(this, '/update-cart/${val.cart_item_id}')">
+								<i class="fas fa-minus-circle"></i>
+							</a>
+							<p class="quantity mx-3" id="quantity" data-id="${val.product_id}"data-price="${
+						val.price
+					}">
+								${val.quantity}
+							</p>
+							<a type="button" onclick="plus(this, '/update-cart/${val.cart_item_id}', ${
+						val.stock
+					})">
+								<i class="fas fa-plus-circle"></i>
+							</a>
+						</td>
+						<td class="text-danger total-price sum-price">
+							${formatCurrency(val.price * val.quantity)}
+						</td>
+						<td class="text-center">
+							<a type="button" onclick="removeItem(this, '/destroy-cart/${
+								val.cart_item_id
+							}', ${results.suser_id})">
+								<i class="fas fa-trash"></i>
+							</a>
+						</td>
+					</tr>`;
+					$('#buy-cart').html(html);
+					$('.total-buy').html(
+						formatCurrency(val.price * val.quantity)
+					);
+				}
+				if (results.count) {
+					$('#cartCount').html(results.count);
+				}
+
+				if (results.data2) {
+					let html = '';
+					results.data2.forEach((val) => {
+						html += `<tr>
+							<td>${val.name}</td>
+							<td>
+								<img src="${val.image}" class="menu-img w-75" alt="" style="height: 60px">
+							</td>
+							<td class="text-danger">${formatCurrency(val.price)}</td>
+							<td class="d-flex align-items-baseline">
+								<a type="button" onclick="minus(this, \'/update-cart/${val.cart_item_id}\')">
+									<i class="fas fa-minus-circle"></i>
+								</a>
+								<p class="quantity mx-3 data" data-id="${val.product_id}" data-price="${
+							val.price
+						}">
+									${val.quantity}
+								</p>
+								<a type="button" onclick="plus(this, \'/update-cart/${val.cart_item_id}\', ${
+							val.stock
+						})">
+									<i class="fas fa-plus-circle"></i>
+								</a>
+							</td>
+							<td class="text-danger price sum-price">
+								${formatCurrency(val.price * val.quantity)}
+							</td>
+							<td class="text-center">
+								<a type="button" onclick="removeItem(this, \'/destroy-cart/${
+									val.cart_item_id
+								}\', ${results.suser_id})">
+									<i class="fas fa-trash"></i>
+								</a>
+							</td>
+						</tr>`;
+					});
+					$('.cart-item').html(html);
+				}
+			}
+			total();
 		},
 		error: function (xhr, status, error) {
 			console.error('Lỗi khi gửi form:', error);
@@ -223,11 +334,13 @@ function plus(element, url, stock) {
 
 function updateTotalPrice(element, quantity) {
 	const priceElement = $(element).closest('tr').find('.text-danger').first();
-	const totalPriceElement = $(element).closest('tr').find('.total-price');
+	const totalPriceElement = $(element).closest('tr').find('.sum-price');
 	const price = parseInt(priceElement.text().replace(/\D/g, '')); // Extract the number
 
 	const totalPrice = price * quantity;
 	totalPriceElement.text(formatCurrency(totalPrice));
+	total();
+	$('.total-buy').html(formatCurrency(totalPrice));
 }
 
 function formatCurrency(amount) {
@@ -245,6 +358,7 @@ function removeItem(element, url, id) {
 			if (results.error === false) {
 				$('#cartCount').html(results.count);
 			}
+			total();
 		},
 	});
 }
@@ -259,88 +373,43 @@ function updateCart(url, quantity) {
 	});
 }
 
-function buyCart(productId, userId) {
-	const data = { product_id: productId, user_id: userId };
-	console.log(data);
+function total() {
+	const priceRows = $('td.price');
+	let total = 0;
+
+	priceRows.each(function () {
+		let priceText = $(this).text().trim();
+		priceText = priceText.replace(/[^\d]/g, '');
+		const price = parseInt(priceText, 10);
+		total += price;
+	});
+
+	$('.total-cart').html(formatCurrency(total));
+}
+
+function payCart(user_id) {
+	let total = $('.total-buy').text().trim();
+	total = total.replace(/[^\d]/g, '');
+	const id = $('#quantity').data('id');
+	const quantity = $('#quantity').text().trim();
+	const price = $('#quantity').data('price');
+
 	$.ajax({
 		type: 'POST',
-		dataType: 'json',
-		data: data,
-		url: '/buy-cart',
+		dateType: 'json',
+		data: {
+			id: user_id,
+			total: total,
+			product_id: id,
+			quantity: quantity,
+			price: price,
+		},
+		url: '/add-order',
 		success: function (results) {
-			console.log(results);
 			if (results.error === false) {
-				if (results.data) {
-					let html = '';
-					const val = results.data;
-					html += `<tr>
-						<td>${val.name}</td>
-						<td>
-							<img src="${val.image}" class="menu-img w-75" alt="" style="height: 60px">
-						</td>
-						<td class="text-danger">${formatCurrency(val.price)}</td>
-						<td class="d-flex align-items-baseline">
-							<a type="button" onclick="minus(this, \'/update-cart/${val.cart_item_id}\')">
-								<i class="fas fa-minus-circle"></i>
-							</a>
-							<p class="quantity mx-3">${val.quantity}</p>
-							<a type="button" onclick="plus(this, \'/update-cart/${val.cart_item_id}\', ${
-						val.stock
-					})">
-								<i class="fas fa-plus-circle"></i>
-							</a>
-						</td>
-						<td class="text-danger total-price">
-							${formatCurrency(val.price * val.quantity)}
-						</td>
-						<td class="text-center">
-							<a type="button" onclick="removeItem(this, \'/destroy-cart/${
-								val.cart_item_id
-							}\', ${results.suser_id})">
-								<i class="fas fa-trash"></i>
-							</a>
-						</td>
-					</tr>`;
-					$('#buy-cart').html(html);
-				}
-				if (results.count) {
-					$('#cartCount').html(results.count);
-				}
-
-				if (results.data2) {
-					let html = '';
-					results.data2.forEach((val) => {
-						html += `<tr>
-							<td>${val.name}</td>
-							<td>
-								<img src="${val.image}" class="menu-img w-75" alt="" style="height: 60px">
-							</td>
-							<td class="text-danger">${formatCurrency(val.price)}</td>
-							<td class="d-flex align-items-baseline">
-								<a type="button" onclick="minus(this, \'/update-cart/${val.cart_item_id}\')">
-									<i class="fas fa-minus-circle"></i>
-								</a>
-								<p class="quantity mx-3">${val.quantity}</p>
-								<a type="button" onclick="plus(this, \'/update-cart/${val.cart_item_id}\', ${
-							val.stock
-						})">
-									<i class="fas fa-plus-circle"></i>
-								</a>
-							</td>
-							<td class="text-danger total-price">
-								${formatCurrency(val.price * val.quantity)}
-							</td>
-							<td class="text-center">
-								<a type="button" onclick="removeItem(this, \'/destroy-cart/${
-									val.cart_item_id
-								}\', ${results.suser_id})">
-									<i class="fas fa-trash"></i>
-								</a>
-							</td>
-						</tr>`;
-					});
-					$('.cart-item').html(html);
-				}
+				location.reload();
+			} else {
+				alert(results.message);
 			}
 		},
 		error: function (xhr, status, error) {
@@ -350,4 +419,30 @@ function buyCart(productId, userId) {
 	});
 }
 
-function html() {}
+function payCarts(user_id) {
+	let total = $('.total-cart').text().trim();
+	total = total.replace(/[^\d]/g, '');
+	const cartItems = [];
+	$('.data').each(function () {
+		const item = {
+			product_id: $(this).data('id'),
+			quantity: $(this).text().trim(),
+			price: $(this).data('price'),
+		};
+		cartItems.push(item);
+	});
+
+	$.ajax({
+		type: 'POST',
+		dateType: 'json',
+		data: { id: user_id, total: total, cartItems: cartItems },
+		url: '/add-orders',
+		success: function (results) {
+			if (results.error === false) {
+				location.reload();
+			} else {
+				alert(results.message);
+			}
+		},
+	});
+}
