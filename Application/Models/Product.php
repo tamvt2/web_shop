@@ -31,6 +31,11 @@ class ModelsProduct extends Model {
 		return $query->num_rows;
 	}
 
+	public function updateStock($id, $stock) {
+		$query = $this->db->query("UPDATE products SET stock = '$stock' WHERE product_id = '$id'");
+		return $query->num_rows;
+	}
+
 	public function delete($id) {
 		$query = $this->db->query("DELETE FROM products WHERE product_id = '$id'");
 		return $query->num_rows;

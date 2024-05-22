@@ -29,6 +29,7 @@ class ControllersOrder extends Controller {
 				$order_id = $model->insert($id, $total, $formattedDateTime);
 				if ($order_id) {
 					$orderItemModel = $this->model('orderItem');
+					$this->updateProduct($product_id, $quantity);
 					$orderItemModel->insert($order_id, $product_id, $quantity, $price);
 					$model2 = $this->model('cart');
 					$model2->deleteProductID($product_id);
@@ -65,6 +66,7 @@ class ControllersOrder extends Controller {
 						$quantity = $item['quantity'];
 						$price = $item['price'];
 
+						$this->updateProduct($product_id, $quantity);
 						$orderItemModel->insert($order_id, $product_id, $quantity, $price);
 					}
 
@@ -120,5 +122,11 @@ class ControllersOrder extends Controller {
 			}
 		}
 		unset($_SESSION['error_message']);
+	}
+
+	private function updateProduct($product_id, $quantity) {
+		$model = $this->model('product');
+		$stock = $model->getID($product_id);
+		$model->updateStock($product_id, ($stock['stock']-$quantity));
 	}
 }
